@@ -141,7 +141,7 @@ input[type="date"] {
 
     /* 自定義日期選擇器圖標 */
     position: relative;
-    background-image: url('/images/logo/calendar-icon.svg');
+    background-image: url('../../images/logo/calendar-icon.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 26px;
@@ -368,15 +368,15 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 /* Card Logos */
 #card-logo.visa {
-    background-image: url('/images/logo/Visa_Inc_logo.svg');
+    background-image: url('../../images/logo/Visa_Inc_logo.svg');
 }
 
 #card-logo.mastercard {
-    background-image: url('/images/logo/Mastercard_logo.svg');
+    background-image: url('../../images/logo/Mastercard_logo.svg');
 }
 
 #card-logo.jcb {
-    background-image: url('/images/logo/JCB_logo.svg');
+    background-image: url('../../images/logo/JCB_logo.svg');
 }
 
 .expiry-date {
