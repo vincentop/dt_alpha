@@ -1,0 +1,742 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* @import url(/css/reset.css); */
+
+/* @font-face {
+    font-family: 'LINESeedTW_OTF_Rg';
+    src: url('fonts/LINESeedTW_OTF_Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+} */
+
+/* body {
+    font-family: 'LINESeedTW_OTF_Rg', 'Tt Norms Pro', 'sans-serif';
+    line-height: 1.6;
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+} */
+
+.form-wrap-container {
+    max-width: 800px;
+    margin: 0 auto;
+    /* background: white; */
+    /* border-radius: 20px; */
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
+    /* overflow: hidden; */
+    /* line-height: 1.6; */
+}
+
+/* .dtform-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+} */
+
+/* .dtform-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+} */
+
+/* .dtform-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+} */
+
+.dtform-container {
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -20px;
+    margin-bottom: 50px;
+    line-height: 1.6; 
+}
+
+.dtform-section {
+    margin-bottom: 40px;
+}
+
+.dtform-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dtform-section-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+.dtform-group {
+    margin-bottom: 20px;
+}
+
+.dtform-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dtform-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+label {
+    display: block;
+    margin-top: 5px;
+    font-weight: 500;
+    color: #374151;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    font-family: 'LINESeedTW_OTF_Rg';
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input[type="date"] {
+    padding: 11px 12px;
+    font-size: 1rem;
+    /* font-family: 'Tt Norms Pro', 'sans-serif'; */
+
+    /* 自定義日期選擇器圖標 */
+    position: relative;
+    background-image: url('/images/logo/calendar-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 26px;
+    padding-right: 40px;
+
+    /* 重置預設樣式 */
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+/* 隱藏預設圖標 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Chrome/Safari 特定樣式 */
+input[type="date"]::-webkit-datetime-edit {
+    padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    background: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: transparent;
+    background: transparent;
+}
+
+.dtform-radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dtform-radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.dtform-radio-option:hover {
+    background: #e2e8f0;
+}
+
+.dtform-radio-option input[type="radio"] {
+    margin: 0;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.dtform-radio-option label {
+    cursor: pointer;
+    margin: 0;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    padding-left: 20px;
+}
+
+.dtform-radio-option label::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.dtform-radio-option input[type="radio"]:checked + label::before {
+    border-color: #667eea;
+    background: #667eea;
+    box-shadow: inset 0 0 0 3px white;
+}
+
+.dtform-radio-option input[type="radio"]:checked+label {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.dtform-radio-option:has(input[type="radio"]:checked) {
+    background: #eef2ff;
+    border-color: #667eea;
+}
+
+.price-highlight {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.subscription-period {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.subscription-period select {
+    width: auto;
+    min-width: 80px;
+}
+
+.bank-info {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #0ea5e9;
+    margin-bottom: 20px;
+}
+
+.bank-info h4 {
+    color: #0369a1;
+    margin-bottom: 10px;
+}
+
+.dt-notice {
+    background: #fef3c7;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+    margin: 20px 0;
+}
+
+.dt-notice h4 {
+    color: #92400e;
+    margin-bottom: 10px;
+}
+
+.dt-notice p {
+    color: #78350f;
+    margin: 0;
+}
+
+.card-types {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.card-type {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card-type:hover {
+    background: #e2e8f0;
+}
+
+.card-type label {
+    cursor: pointer;
+    margin: 0;
+    flex: 1;
+}
+
+.card-type:has(input[type="radio"]:checked) {
+    background: #eef2ff;
+    border-color: #667eea;
+}
+
+.card-number-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+}
+
+#card-number {
+    padding: 0.75rem;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+    font-size: 1rem;
+    /* width: 250px; */
+    padding-right: 50px;
+    /* Make space for the logo */
+}
+
+#card-logo {
+    position: absolute;
+    right: 10px;
+    width: 40px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+/* Card Logos */
+#card-logo.visa {
+    background-image: url('/images/logo/Visa_Inc_logo.svg');
+}
+
+#card-logo.mastercard {
+    background-image: url('/images/logo/Mastercard_logo.svg');
+}
+
+#card-logo.jcb {
+    background-image: url('/images/logo/JCB_logo.svg');
+}
+
+.expiry-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.expiry-date select {
+    /* width: auto; */
+    min-width: 100px;
+}
+
+.contact-info {
+    background: #f0fdf4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.contact-info h4 {
+    color: #166534;
+    margin-bottom: 15px;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item strong {
+    color: #166534;
+}
+
+.print-section {
+    /* background: #f8fafc; */
+    padding-top: 30px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+.print-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.print-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.print-instruction {
+    margin-bottom: 20px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.message-display {
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.message-display.show {
+    opacity: 1;
+    transform: translateY(0);
+    min-height: auto;
+}
+
+.message-display.success {
+    background-color: #d1fae5;
+    border: 1px solid #10b981;
+    color: #065f46;
+}
+
+.message-display.error {
+    background-color: #fef2f2;
+    border: 1px solid #ef4444;
+    color: #ca1f1f;
+}
+
+.message-display.info {
+    background-color: #dbeafe;
+    border: 1px solid #3b82f6;
+    color: #1e40af;
+}
+
+.total-amount {
+    background: #eef2ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.total-amount h3 {
+    color: #4338ca;
+    margin-bottom: 10px;
+}
+
+.total-amount p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+@media (max-width: 768px) {
+    .dtform-header {
+        padding: 30px 20px;
+    }
+
+    .dtform-header h1 {
+        font-size: 2rem;
+    }
+
+    .dtform-container {
+        padding: 30px 20px;
+    }
+
+    .dtform-row {
+        flex-direction: column;
+    }
+
+    .dtform-radio-group {
+        flex-direction: column;
+    }
+
+    .dtform-radio-option {
+        min-width: auto;
+    }
+
+    .card-types {
+        flex-direction: column;
+    }
+
+    .subscription-period {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .expiry-date {
+        flex-direction: column;
+    }
+
+    .contact-details {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .dtform-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .dtform-container {
+        padding: 20px 15px;
+    }
+
+    .dtform-section-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* 驗證碼相關樣式 */
+.verification-section {
+    background: #f8fafc;
+    padding: 30px;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.verification-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.captcha-display {
+    margin-bottom: 20px;
+}
+
+.captcha-display label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 1.1rem;
+}
+
+.captcha-code {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 0 10px;
+    display: inline-block;
+    min-width: 150px;
+    min-height: 50px;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+}
+
+.captcha-code::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.05) 2px,
+            rgba(0, 0, 0, 0.05) 4px);
+    pointer-events: none;
+}
+
+.refresh-captcha {
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-captcha:hover {
+    background: #4f46e5;
+    transform: rotate(180deg);
+}
+
+.captcha-input-group {
+    margin-bottom: 20px;
+}
+
+#captcha-input {
+    width: 200px;
+    padding: 12px 15px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+#captcha-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.captcha-status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+
+.captcha-status.success {
+    color: #059669;
+}
+
+.captcha-status.error {
+    color: #dc2626;
+}
+
+.captcha-char {
+    user-select: none;
+    pointer-events: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .verification-section {
+        padding: 20px 15px;
+    }
+
+    .captcha-display {
+        margin-bottom: 15px;
+    }
+
+    .captcha-code {
+        min-width: 120px;
+        padding: 12px 15px;
+        margin: 0 5px;
+    }
+
+    #captcha-input {
+        width: 180px;
+        font-size: 1rem;
+    }
+
+    .refresh-captcha {
+        width: 35px;
+        height: 35px;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .verification-section {
+        padding: 15px 10px;
+    }
+
+    .captcha-display label {
+        font-size: 1rem;
+    }
+
+    .captcha-code {
+        min-width: 100px;
+        padding: 10px 12px;
+    }
+
+    #captcha-input {
+        width: 160px;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .refresh-captcha {
+        width: 32px;
+        height: 32px;
+    }
+}
