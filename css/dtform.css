@@ -549,9 +549,9 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 @media (max-width: 480px) {
-    body {
+    /* body {
         padding: 10px;
-    }
+    } */
 
     .dtform-header h1 {
         font-size: 1.8rem;
