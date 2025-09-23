@@ -9,16 +9,25 @@
 @import url(contact.css);
 @import url(dtform.css);
 
+@font-face {
+    font-family: 'LINESeedTW_OTF_Rg';
+    src: url('../fonts/LINESeedTW_OTF_Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 /*========================================================================================================*/
 /*== Main                                                                                              ===*/
 /*========================================================================================================*/
 
 body {
-  font-family: 'Tt Norms Pro', 'sans-serif';
+  font-family: 'LINESeedTW_OTF_Rg', 'Tt Norms Pro', 'sans-serif';
   min-width: 320px;
   /* 設置最小寬度 */
 }
+
 
 
 /*========================================================================================================*/

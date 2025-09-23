@@ -16,7 +16,7 @@
 
 
 .subscribe-container {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 10px 30px var(--shadow-color);

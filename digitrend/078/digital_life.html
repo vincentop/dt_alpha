@@ -13,32 +13,32 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://event.asus.com/digitrend/">
-    <meta property="og:image" content="/images/logo/fb_dt_logo.jpg">
+    <meta property="og:image" content="../../images/logo/fb_dt_logo.jpg">
     <meta property="og:site_name" content="數位狂潮">
 
-    <link rel="shortcut icon" href="/images/logo/digitrend/digitrend_ico.ico">
-    <link rel="stylesheet" href="/css/fontawesome.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/owl.carousel.css">
-    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="shortcut icon" href="../../images/logo/digitrend/digitrend_ico.ico">
+    <link rel="stylesheet" href="../../css/fontawesome.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../css/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <header data-aos="fade-down" data-aos-anchor-placement="top-bottom" data-aos-easing="ease">
         <div class="navigationBar">
-            <div class="logo" style="background: url(/images/logo/digitrend/digitrend_logo.svg) no-repeat;">
-                <a href="/index.html">DigiTrend</a>
+            <div class="logo" style="background: url(../../images/logo/digitrend/digitrend_logo.svg) no-repeat;">
+                <a href="../../index.html">DigiTrend</a>
             </div>
             <input type="checkbox" id="menuActive">
             <label class="menuIcon" for="menuActive"><span class="navIcon"></span></label>
             <div class="menu">
                 <ul>
-                    <li id="dt-about"><a href="/about.html">關於</a></li>
-                    <li id="dt-catalog"><a href="/release.html">各期目錄</a></li>
-                    <li id="dt-subscribe"><a href="/subscribe.html">訂閱雜誌</a></li>
-                    <li id="dt-contact"><a href="/contact.html">聯絡我們</a></li>
+                    <li id="dt-about"><a href="../../about.html">關於</a></li>
+                    <li id="dt-catalog"><a href="../../release.html">各期目錄</a></li>
+                    <li id="dt-subscribe"><a href="../../subscribe.html">訂閱雜誌</a></li>
+                    <li id="dt-contact"><a href="../../contact.html">聯絡我們</a></li>
                 </ul>
             </div>
         </div>
@@ -259,10 +259,10 @@
     <footer>
         <div class="footerTop">
             <div class="footerTopLeft">
-                <a href="/about.html">關於 Digitrend</a>
+                <a href="../../about.html">關於 Digitrend</a>
                 <a href="https://www.asus.com/tw/terms_of_use_notice_privacy_policy/privacy_policy" target="_blank">隱私權保護政策</a>
-                <a href="/contact.html">文章授權</a>
-                <a href="/contact.html">聯絡我們</a>
+                <a href="../../contact.html">文章授權</a>
+                <a href="../../contact.html">聯絡我們</a>
                 </ul>
             </div>
             <div class="footerTopRight">
@@ -270,7 +270,7 @@
                     <a href="https://www.facebook.com/DigiTrend1999" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
                 <div class="enLogo">
-                    <a href="#"><img src="/images/logo/digitrend/digitrend_logo_en.png" alt="DigiTrend"></a>
+                    <a href="#"><img src="../../images/logo/digitrend/digitrend_logo_en.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -291,54 +291,17 @@
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/fontawesome.js" type="text/javascript"></script>
-    <script src="/js/owl.carousel.js"></script>
-    <script src="/js/owl.setting.js"></script>
-    <script src="/js/backToTopBtn.js"></script>
-    <script src="/js/tabs.js"></script>
-    <script src="/js/aos.js"></script>
+    <script src="../../js/fontawesome.js" type="text/javascript"></script>
+    <script src="../../js/owl.carousel.js"></script>
+    <script src="../../js/owl.setting.js"></script>
+    <script src="../../js/backToTopBtn.js"></script>
+    <script src="../../js/tabs.js"></script>
+    <script src="../../js/aos.js"></script>
+    <script src="../../js/content-lightbox.js"></script>
     <script>
         AOS.init({
             easing: 'ease-out-back',
             duration: 1000
-        });
-    </script>
-    <script>
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        const images = document.querySelectorAll('.content-intro-image img, .content-section-image img');
-
-        // Add click event to all images
-        images.forEach(img => {
-            img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        // Close lightbox events
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        lightboxClose.addEventListener('click', closeLightbox);
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
         });
     </script>
 </body>

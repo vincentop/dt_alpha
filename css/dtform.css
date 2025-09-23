@@ -390,33 +390,33 @@ input[type="date"]::-webkit-datetime-edit-text {
     min-width: 100px;
 }
 
-.contact-info {
+/* .contact-info {
     background: #f0fdf4;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     margin-top: 30px;
-}
+} */
 
-.contact-info h4 {
+/* .contact-info h4 {
     color: #166534;
     margin-bottom: 15px;
-}
+} */
 
-.contact-details {
+/* .contact-details {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
-}
+} */
 
-.contact-item {
+/* .contact-item {
     text-align: center;
-}
+} */
 
-.contact-item strong {
+/* .contact-item strong {
     color: #166534;
-}
+} */
 
 .print-section {
     /* background: #f8fafc; */
