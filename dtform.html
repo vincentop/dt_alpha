@@ -169,7 +169,7 @@
             <div class="dtform-col">
               <label for="card-number">信用卡卡號</label>
               <div class="card-number-wrapper">
-                <input type="text" id="card-number" placeholder="0000-0000-0000-0000" maxlength="19">
+                <input type="text" id="card-number" placeholder="0000-0000-0000-0000" maxlength="19" class="card-number-custom-input">
                 <span id="card-logo"></span>
               </div>
             </div>
@@ -307,13 +307,22 @@
       <div class="print-section">
         <div class="print-instruction">
           <p>填寫完整資料後請點下方按鈕 E-mail 至 Helen_Tseng@asus.com</p>
-          <p>若您使用匯款方式，請連同匯款收據一起寄出。</p>
+          <p>若您使用匯款方式，請附加匯款收據圖檔一起寄出。</p>
         </div>
         <button type="button" class="print-btn" onclick="sendEmail()" id="send-email-btn">
           <i class="fas fa-envelope"></i>
           發送 E-mail
         </button>
         <div id="message-display" class="message-display"></div>
+      </div>
+
+      <div class="contact-info">
+        <h4>隱私權與資料使用</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            我已詳細閱讀並同意以下聲明：因訂購雜誌之需要，本公司向您蒐集本訂閱單所需個人資訊，資訊僅作為公司營運期間辨識訂閱戶資料、寄送出版物之用。您可隨時向本公司請求查閱、更正或補充個人資訊、提供複本及請求刪除或停止使用。如資料填寫不完整時，可能影響您收受刊物之權利。若收件人非訂購人時，請務必向收件人告知確認此聲明。
+          </div>
+        </div>
       </div>
 
     </div>

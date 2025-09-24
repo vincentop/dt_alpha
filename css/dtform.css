@@ -58,7 +58,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: -20px;
     margin-bottom: 50px;
-    line-height: 1.6; 
+    line-height: 1.6;
 }
 
 .dtform-section {
@@ -98,6 +98,7 @@
 .dtform-col {
     flex: 1;
     min-width: 200px;
+    padding-bottom: 10px;
 }
 
 label {
@@ -117,10 +118,10 @@ textarea {
     padding: 12px 16px;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     background: white;
-    font-family: 'LINESeedTW_OTF_Rg';
+    font-family: 'LINESeedTW';
 }
 
 input[type="text"]:focus,
@@ -237,7 +238,7 @@ input[type="date"]::-webkit-datetime-edit-text {
     transition: all 0.3s ease;
 }
 
-.dtform-radio-option input[type="radio"]:checked + label::before {
+.dtform-radio-option input[type="radio"]:checked+label::before {
     border-color: #667eea;
     background: #667eea;
     box-shadow: inset 0 0 0 3px white;
@@ -263,7 +264,7 @@ input[type="date"]::-webkit-datetime-edit-text {
     align-items: center;
     gap: 10px;
     margin-top: 15px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .subscription-period select {
@@ -345,6 +346,10 @@ input[type="date"]::-webkit-datetime-edit-text {
     /* border-radius: 4px; */
 }
 
+.card-number-custom-input{
+    /* font-size: 2rem; */
+}
+
 #card-number {
     padding: 0.75rem;
     /* border: 1px solid #ccc; */
@@ -390,33 +395,41 @@ input[type="date"]::-webkit-datetime-edit-text {
     min-width: 100px;
 }
 
-/* .contact-info {
+.contact-info {
     background: #f0fdf4;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 30px;
-} */
+    border-radius: 10px;
+    /* text-align: center; */
+    /* margin-bottom: 30px; */
+    margin-top: 20px;
+}
 
-/* .contact-info h4 {
+.contact-info h4 {
     color: #166534;
-    margin-bottom: 15px;
-} */
+    margin-bottom: 10px;
+}
 
-/* .contact-details {
+.contact-info h4::before {
+    content: '⚠️';
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+.contact-details {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
-} */
+}
 
-/* .contact-item {
-    text-align: center;
-} */
+.contact-item {
+    text-align: justify;
+    font-size: 0.9rem;
+}
 
-/* .contact-item strong {
+.contact-item strong {
     color: #166534;
-} */
+}
 
 .print-section {
     /* background: #f8fafc; */
@@ -520,6 +533,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 
     .dtform-row {
         flex-direction: column;
+        gap:0;
     }
 
     .dtform-radio-group {
@@ -534,14 +548,14 @@ input[type="date"]::-webkit-datetime-edit-text {
         flex-direction: column;
     }
 
-    .subscription-period {
+    /* .subscription-period {
         flex-direction: column;
         align-items: flex-start;
-    }
+    } */
 
-    .expiry-date {
+    /* .expiry-date {
         flex-direction: column;
-    }
+    } */
 
     .contact-details {
         flex-direction: column;
