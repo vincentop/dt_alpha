@@ -92,11 +92,12 @@
 
 .subscribe-content h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 700;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 0.5rem;
     margin-top: 0;
     margin-bottom: 1.5rem;
+    color: #2c3e50;
 }
 
 .subscribe-content h2:not(:first-child) {
@@ -143,8 +144,9 @@
 
 .channel-card span {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
+    color: #34495e;
 }
 
 @media (max-width: 768px) {

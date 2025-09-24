@@ -21,8 +21,6 @@
     background: linear-gradient(45deg, #ff6b6b, #ff9ff3, #54a0ff);
     background-size: 400% 400%;
     animation: gradientShift 8s ease infinite;
-    font-weight: 700;
-    color: #1e293b;
     overflow: hidden;
     padding-top: 160px;
     padding-bottom: 80px;
@@ -30,11 +28,13 @@
 
 .content-main-title {
     font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
     letter-spacing: -1px;
     line-height: 1.2;
     max-width: 1200px;
     text-align: center;
+    font-weight: 700;
+    color: #1e293b;
 }
 
 
@@ -192,6 +192,16 @@
     text-indent: 1.2rem;
 }
 
+.content-text-notice {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #34495e;
+    /* margin-bottom: 20px; */
+    /* text-align: justify; */
+    /* text-indent: 1.2rem; */
+}
+
+
 .highlight-box {
     background: linear-gradient(135deg, rgba(107, 32, 127, 0.1), rgba(255, 107, 107, 0.1));
     padding: 25px;
@@ -251,7 +261,7 @@
 .content-footer-link {
     color: #6b207f;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     padding: 12px 24px;
     background: white;
     border-radius: 25px;
@@ -273,10 +283,13 @@
     color: white;
     text-decoration: none;
     border-radius: 25px;
-    font-weight: 600;
+    font-weight: 700;
     margin-top: 20px;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
 }
 
 .content-back-button:hover {
@@ -317,7 +330,7 @@
     font-size: 64px;
     color: white;
     cursor: pointer;
-    font-weight: bold;
+    /* font-weight: bold; */
     transition: opacity 0.3s ease;
 }
 

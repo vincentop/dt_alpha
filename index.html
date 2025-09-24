@@ -127,7 +127,7 @@
             <div class="magazine-cover-reflection"></div>
           </div>
           <div class="magazine-issue-meta">
-            <span class="magazine-issue-number">087</span>
+            <span class="magazine-issue-number">No. 87</span>
             <span class="magazine-issue-date">2025年07~09月號</span>
           </div>
         </div>
@@ -554,49 +554,11 @@
   <script src="js/backToTopBtn.js"></script>
   <script src="js/tabs.js"></script>
   <script src="js/aos.js"></script>
-  <script src="js/dtform.js"></script>
+  <script src="js/index-lightbox.js"></script>
   <script>
     AOS.init({
       easing: 'ease-out-back',
       duration: 1000
-    });
-  </script>
-  <script>
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const images = document.querySelectorAll('.magazine-cover-imgFit img');
-
-    // Add click event to all images
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close lightbox events
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    // Close with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
     });
   </script>
 </body>
