@@ -1,5 +1,5 @@
 /*========================================================================================================*/
-/*== Contact Us                                                                                       ===*/
+/*== Contact Us Style                                                                                  ===*/
 /*========================================================================================================*/
 
 .contact-container {
@@ -95,7 +95,7 @@
 }
 
 .contact-card h2 {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #2c3e50;
     text-align: center;
@@ -195,11 +195,7 @@
     margin-bottom: 0;
 }
 
-.hours-card .contact-info {
-    /* text-align: left; */
-}
-
-.hours-info {
+.service-time-info {
     background: #f8fff9;
     border: 1px solid #e8f5e8;
     padding: 1.8rem 1.5rem;
@@ -208,7 +204,7 @@
     position: relative;
 }
 
-.hours-info::before {
+.service-time-info::before {
     content: '⏰';
     position: absolute;
     top: -8px;
@@ -218,7 +214,7 @@
     font-size: 16px;
 }
 
-.time {
+.contact-hours {
     font-size: 1.8rem;
     font-weight: 700;
     color: #27ae60 !important;
@@ -226,7 +222,7 @@
     text-align: center;
 }
 
-.note {
+.contact-note {
     color: #7f8c8d !important;
     font-size: 0.9rem !important;
     text-align: center;
@@ -269,7 +265,10 @@
     }
 }
 
-/* Responsive Design */
+/*========================================================================================================*/
+/*== Contact Us RWD                                                                                    ===*/
+/*========================================================================================================*/
+
 @media (max-width: 1200px) {
     .contact-container {
         padding: 0 1.5rem;
@@ -324,14 +323,14 @@
     }
     
     .contact-card h2 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     .phone-number {
         font-size: 1rem !important;
     }
     
-    .time {
+    .contact-hours {
         font-size: 1.5rem !important;
     }
 }
@@ -371,7 +370,7 @@
         box-sizing: border-box;
     }
     
-    .hours-info,
+    .service-time-info,
     .after-hours,
     .person-info {
         padding: 1rem;

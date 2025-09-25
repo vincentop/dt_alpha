@@ -1,35 +1,10 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
-
-/* @import url(/css/reset.css); */
-
-/* @font-face {
-    font-family: 'LINESeedTW_OTF_Rg';
-    src: url('fonts/LINESeedTW_OTF_Rg.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-} */
-
-/* body {
-    font-family: 'LINESeedTW_OTF_Rg', 'Tt Norms Pro', 'sans-serif';
-    line-height: 1.6;
-    color: #333;
-    min-height: 100vh;
-    padding: 20px;
-} */
+/*========================================================================================================*/
+/*== form Style                                                                                         ===*/
+/*========================================================================================================*/
 
 .form-wrap-container {
     max-width: 800px;
     margin: 0 auto;
-    /* background: white; */
-    /* border-radius: 20px; */
-    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
-    /* overflow: hidden; */
-    /* line-height: 1.6; */
 }
 
 /* .dtform-header {
@@ -67,8 +42,9 @@
 
 .dtform-section-title {
     font-size: 1.5rem;
-    font-weight: 600;
-    color: #2d3748;
+    font-weight: 700;
+    /* color: #2d3748; */
+    color: #2c3e50;
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #e2e8f0;
@@ -79,7 +55,7 @@
 
 .dtform-section-title::before {
     content: '';
-    width: 4px;
+    width: 5px;
     height: 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 2px;
@@ -104,7 +80,7 @@
 label {
     display: block;
     margin-top: 5px;
-    font-weight: 500;
+    font-weight: 400;
     color: #374151;
 }
 
@@ -138,8 +114,6 @@ textarea:focus {
 input[type="date"] {
     padding: 11px 12px;
     font-size: 1rem;
-    /* font-family: 'Tt Norms Pro', 'sans-serif'; */
-
     /* 自定義日期選擇器圖標 */
     position: relative;
     background-image: url('../images/logo/calendar-icon.svg');
@@ -147,7 +121,6 @@ input[type="date"] {
     background-position: right 10px center;
     background-size: 26px;
     padding-right: 40px;
-
     /* 重置預設樣式 */
     -webkit-appearance: none;
     -moz-appearance: textfield;
@@ -256,7 +229,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 .price-highlight {
     color: #dc2626;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .subscription-period {
@@ -303,6 +276,10 @@ input[type="date"]::-webkit-datetime-edit-text {
     margin: 0;
 }
 
+/*========================================================================================================*/
+/*== Credit Card Style                                                                                 ===*/
+/*========================================================================================================*/
+
 .card-types {
     display: flex;
     gap: 15px;
@@ -346,19 +323,14 @@ input[type="date"]::-webkit-datetime-edit-text {
     /* border-radius: 4px; */
 }
 
-.card-number-custom-input{
-    /* font-size: 2rem; */
-}
-
-#card-number {
-    padding: 0.75rem;
-    /* border: 1px solid #ccc; */
-    /* border-radius: 4px; */
+/* #card-number {
     font-size: 1rem;
-    /* width: 250px; */
+    padding: 0.75rem;
     padding-right: 50px;
-    /* Make space for the logo */
-}
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+} */
 
 #card-logo {
     position: absolute;
@@ -371,7 +343,6 @@ input[type="date"]::-webkit-datetime-edit-text {
     transition: background-image 0.3s ease;
 }
 
-/* Card Logos */
 #card-logo.visa {
     background-image: url('../images/logo/Visa_Inc_logo.svg');
 }
@@ -395,7 +366,11 @@ input[type="date"]::-webkit-datetime-edit-text {
     min-width: 100px;
 }
 
-.contact-info {
+/*========================================================================================================*/
+/*== Disclaimer Style                                                                                  ===*/
+/*========================================================================================================*/
+
+.disclaimer-info {
     background: #f0fdf4;
     padding: 20px;
     border-radius: 10px;
@@ -404,32 +379,37 @@ input[type="date"]::-webkit-datetime-edit-text {
     margin-top: 20px;
 }
 
-.contact-info h4 {
+.disclaimer-info h4 {
     color: #166534;
     margin-bottom: 10px;
+    text-align: center;
 }
 
-.contact-info h4::before {
+.disclaimer-info h4::before {
     content: '⚠️';
     font-size: 1.5rem;
     margin-right: 5px;
 }
 
-.contact-details {
+.disclaimer-details {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.contact-item {
+.disclaimer-item {
     text-align: justify;
     font-size: 0.9rem;
 }
 
-.contact-item strong {
+.disclaimer-item strong {
     color: #166534;
 }
+
+/*========================================================================================================*/
+/*== Send Email                                                                                         ===*/
+/*========================================================================================================*/
 
 .print-section {
     /* background: #f8fafc; */
@@ -440,12 +420,12 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 .print-btn {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 10px 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-weight: 700;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
@@ -467,7 +447,7 @@ input[type="date"]::-webkit-datetime-edit-text {
     margin-top: 20px;
     padding: 5px;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
     transition: all 0.3s ease;
     min-height: 0;
@@ -499,6 +479,10 @@ input[type="date"]::-webkit-datetime-edit-text {
     color: #1e40af;
 }
 
+/*========================================================================================================*/
+/*== Total Amount                                                                                      ===*/
+/*========================================================================================================*/
+
 .total-amount {
     background: #eef2ff;
     padding: 20px;
@@ -514,9 +498,14 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 .total-amount p {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #4f46e5;
 }
+
+/*========================================================================================================*/
+/*== DT Form Style RWD                                                                                 ===*/
+/*========================================================================================================*/
+
 
 @media (max-width: 768px) {
     .dtform-header {
@@ -533,7 +522,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 
     .dtform-row {
         flex-direction: column;
-        gap:0;
+        gap: 0;
     }
 
     .dtform-radio-group {
@@ -557,7 +546,7 @@ input[type="date"]::-webkit-datetime-edit-text {
         flex-direction: column;
     } */
 
-    .contact-details {
+    .disclaimer-details {
         flex-direction: column;
     }
 }
@@ -576,7 +565,10 @@ input[type="date"]::-webkit-datetime-edit-text {
     }
 }
 
-/* 驗證碼相關樣式 */
+/*========================================================================================================*/
+/*== 驗證碼相關                                                                                         ===*/
+/*========================================================================================================*/
+
 .verification-section {
     background: #f8fafc;
     padding: 30px;
@@ -597,7 +589,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 .captcha-display label {
     display: block;
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 700;
     color: #374151;
     font-size: 1.1rem;
 }
@@ -679,7 +671,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 .captcha-status {
     margin-top: 10px;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 400;
     min-height: 20px;
     transition: all 0.3s ease;
 }
@@ -697,7 +689,6 @@ input[type="date"]::-webkit-datetime-edit-text {
     pointer-events: none;
 }
 
-/* 響應式設計 */
 @media (max-width: 768px) {
     .verification-section {
         padding: 20px 15px;

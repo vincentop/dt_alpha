@@ -2,9 +2,7 @@
 /*== Subscribe                                                                                         ===*/
 /*========================================================================================================*/
 
-
-
-:root {
+/* :root {
     --primary-color: #0a0a0a;
     --secondary-color: #555;
     --background-color: #f9f9f9;
@@ -12,14 +10,13 @@
     --border-color: #eaeaea;
     --shadow-color: rgba(0, 0, 0, 0.05);
     --accent-color: #007bff;
-}
-
+} */
 
 .subscribe-container {
     max-width: 1200px;
     margin: 0 auto;
     border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -93,7 +90,7 @@
 .subscribe-content h2 {
     font-size: 2rem;
     font-weight: 700;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid #eaeaea;
     padding-bottom: 0.5rem;
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -114,20 +111,20 @@
 }
 
 .channel-card {
-    background-color: var(--card-background);
+    background-color: #ffffff;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #cecece;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .channel-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--shadow-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .channel-card a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: #0a0a0a;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,6 +145,10 @@
     text-align: center;
     color: #34495e;
 }
+
+/*========================================================================================================*/
+/*== Subscribe RWD                                                                                     ===*/
+/*========================================================================================================*/
 
 @media (max-width: 768px) {
     .subscribe-container {
@@ -170,7 +171,6 @@
         width: 100%;
         padding: 2rem;
     }
-
 }
 
 @media (max-width: 480px) {
