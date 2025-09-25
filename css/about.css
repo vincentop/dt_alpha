@@ -2,13 +2,11 @@
 /*== About Us                                                                                          ===*/
 /*========================================================================================================*/
 
-
-/* New About Container Layout */
 .about-container {
     max-width: 1200px;
     margin: 0 auto;
     border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -59,7 +57,7 @@
 .about-content h2 {
     font-size: 2rem;
     font-weight: 700;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid #eaeaea;
     padding-bottom: 0.5rem;
     margin-top: 0;
     margin-bottom: 2rem;
@@ -78,7 +76,11 @@
     margin-bottom: 2rem;
 }
 
-/* Responsive Design */
+/*========================================================================================================*/
+/*== About Us  RWD                                                                                     ===*/
+/*========================================================================================================*/
+
+
 @media (max-width: 1200px) {
     .about-container {
         /* padding: 0 1.5rem; */

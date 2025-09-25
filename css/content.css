@@ -1,3 +1,7 @@
+/*========================================================================================================*/
+/*== Content Style                                                                                     ===*/
+/*========================================================================================================*/
+
 .content-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -37,8 +41,6 @@
     color: #1e293b;
 }
 
-
-
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -52,8 +54,6 @@
         background-position: 0% 50%;
     }
 }
-
-
 
 .content-intro {
     display: flex;
@@ -69,7 +69,6 @@
     align-self: flex-end;
 }
 
-
 .content-intro-image {
     display: flex;
     flex-direction: column;
@@ -80,7 +79,6 @@
 .content-intro-image img {
     cursor: pointer;
 }
-
 
 .intro-image-setting {
     width: 100%;
@@ -201,7 +199,6 @@
     /* text-indent: 1.2rem; */
 }
 
-
 .highlight-box {
     background: linear-gradient(135deg, rgba(107, 32, 127, 0.1), rgba(255, 107, 107, 0.1));
     padding: 25px;
@@ -297,7 +294,10 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Lightbox Styles */
+/*========================================================================================================*/
+/*== Content LightBox                                                                                  ===*/
+/*========================================================================================================*/
+
 .lightbox {
     display: none;
     position: fixed;
@@ -338,12 +338,11 @@
     opacity: 0.7;
 }
 
+/*========================================================================================================*/
+/*== Content RWD                                                                                       ===*/
+/*========================================================================================================*/
 
-
-
-/* 響應式設計 */
 @media (max-width: 1200px) {
-
     .content-intro-image {
         width: 50%;
     }
@@ -351,7 +350,6 @@
     .content-section-image {
         width: 50%;
     }
-
 }
 
 @media (max-width: 960px) {
@@ -371,12 +369,9 @@
     .content-section-image {
         width: 60%;
     }
-
 }
 
-
 @media (max-width: 768px) {
-
     .content-article-card {
         padding: 40px;
     }
@@ -406,6 +401,4 @@
     .content-section-image {
         width: 80%;
     }
-
-
 }

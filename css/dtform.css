@@ -1,5 +1,5 @@
 /*========================================================================================================*/
-/*== form Style                                                                                         ===*/
+/*== DT Form Style                                                                                     ===*/
 /*========================================================================================================*/
 
 .form-wrap-container {
@@ -43,7 +43,6 @@
 .dtform-section-title {
     font-size: 1.5rem;
     font-weight: 700;
-    /* color: #2d3748; */
     color: #2c3e50;
     margin-bottom: 20px;
     padding-bottom: 10px;
@@ -111,18 +110,21 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/*========================================================================================================*/
+/*== Calender Style                                                                                    ===*/
+/*========================================================================================================*/
+
+/* 自定義日期選擇器圖標 */
 input[type="date"] {
     padding: 11px 12px;
     font-size: 1rem;
-    /* 自定義日期選擇器圖標 */
     position: relative;
     background-image: url('../images/logo/calendar-icon.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 26px;
     padding-right: 40px;
-    /* 重置預設樣式 */
-    -webkit-appearance: none;
+    -webkit-appearance: none;   /* 重置預設樣式 */
     -moz-appearance: textfield;
     appearance: none;
 }
@@ -150,6 +152,11 @@ input[type="date"]::-webkit-datetime-edit-text {
     color: transparent;
     background: transparent;
 }
+
+
+/*========================================================================================================*/
+/*== Radio Option Style                                                                                ===*/
+/*========================================================================================================*/
 
 .dtform-radio-group {
     display: flex;
@@ -227,36 +234,9 @@ input[type="date"]::-webkit-datetime-edit-text {
     border-color: #667eea;
 }
 
-.price-highlight {
-    color: #dc2626;
-    font-weight: 700;
-}
-
-.subscription-period {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-    /* flex-wrap: wrap; */
-}
-
-.subscription-period select {
-    width: auto;
-    min-width: 80px;
-}
-
-.bank-info {
-    background: #f0f9ff;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid #0ea5e9;
-    margin-bottom: 20px;
-}
-
-.bank-info h4 {
-    color: #0369a1;
-    margin-bottom: 10px;
-}
+/*========================================================================================================*/
+/*== DT notice Style                                                                                   ===*/
+/*========================================================================================================*/
 
 .dt-notice {
     background: #fef3c7;
@@ -274,6 +254,49 @@ input[type="date"]::-webkit-datetime-edit-text {
 .dt-notice p {
     color: #78350f;
     margin: 0;
+}
+
+/*========================================================================================================*/
+/*== Price Style                                                                                       ===*/
+/*========================================================================================================*/
+
+.price-highlight {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+/*========================================================================================================*/
+/*== Subscribe Period Style                                                                            ===*/
+/*========================================================================================================*/
+
+.subscription-period {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    /* flex-wrap: wrap; */
+}
+
+.subscription-period select {
+    width: auto;
+    min-width: 80px;
+}
+
+/*========================================================================================================*/
+/*== Bank Info                                                                                         ===*/
+/*========================================================================================================*/
+
+.bank-info {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #0ea5e9;
+    margin-bottom: 20px;
+}
+
+.bank-info h4 {
+    color: #0369a1;
+    margin-bottom: 10px;
 }
 
 /*========================================================================================================*/
@@ -408,7 +431,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 /*========================================================================================================*/
-/*== Send Email                                                                                         ===*/
+/*== Send Email Style                                                                                  ===*/
 /*========================================================================================================*/
 
 .print-section {

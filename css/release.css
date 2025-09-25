@@ -1,18 +1,18 @@
 /*========================================================================================================*/
-/*== release all                                                                                       ===*/
+/*== Release All                                                                                       ===*/
 /*========================================================================================================*/
 
 .releaseAll-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    margin-top: -20px;
-    margin-bottom: 50px;
-    backdrop-filter: blur(20px);
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  margin-top: -20px;
+  margin-bottom: 50px;
+  backdrop-filter: blur(20px);
 }
 
 .releaseAll {
@@ -91,6 +91,7 @@
   font-weight: 400;
 }
 
+/* 
 .accordion {
   padding-left: 80px;
   padding-right: 80px;
@@ -201,8 +202,9 @@
   background-color: var(--bs-accordion-body-bg);
   border-top: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
 }
+*/
 
-/* Button Styles */
+/* 
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -318,7 +320,6 @@
   margin-top: 0.5rem;
 }
 
-/* Custom Button Icon Styles */
 .btn-icon {
   display: inline-flex;
   align-items: center;
@@ -330,8 +331,12 @@
 
 .btn-icon-only i {
   margin: 0;
-}
+} 
+*/
 
+/*========================================================================================================*/
+/*== Release All RWD                                                                                   ===*/
+/*========================================================================================================*/
 
 @media (max-width: 1200px) {
   .releaseAll ul {
