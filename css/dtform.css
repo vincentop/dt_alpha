@@ -408,11 +408,11 @@ input[type="date"]::-webkit-datetime-edit-text {
     text-align: center;
 }
 
-.disclaimer-info h4::before {
+/* .disclaimer-info h4::before {
     content: '⚠️';
     font-size: 1.5rem;
     margin-right: 5px;
-}
+} */
 
 .disclaimer-details {
     display: flex;
