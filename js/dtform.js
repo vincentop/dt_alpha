@@ -87,6 +87,29 @@ document.addEventListener('DOMContentLoaded', function () {
     calculateTotal();
     togglePaymentSections();
 
+    // 隱私權同意checkbox控制按鈕啟用狀態
+    const privacyAgreement = document.getElementById('privacy-agreement');
+    const sendEmailBtn = document.getElementById('send-email-btn');
+    const agreementCheckbox = document.querySelector('.agreement-checkbox');
+
+    if (privacyAgreement && sendEmailBtn && agreementCheckbox) {
+        // 處理checkbox狀態變化
+        privacyAgreement.addEventListener('change', function() {
+            sendEmailBtn.disabled = !this.checked;
+            agreementCheckbox.classList.toggle('checked', this.checked);
+        });
+
+        // 處理整個區域的點擊事件
+        agreementCheckbox.addEventListener('click', function(e) {
+            // 如果點擊的不是checkbox本身，則手動觸發checkbox點擊
+            if (e.target !== privacyAgreement) {
+                e.preventDefault();
+                privacyAgreement.checked = !privacyAgreement.checked;
+                privacyAgreement.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+
     const cardNumberInput = document.getElementById('card-number');
     const cardLogo = document.getElementById('card-logo');
 
@@ -259,6 +282,55 @@ document.addEventListener('DOMContentLoaded', function () {
             existingError.remove();
         }
     }
+
+    // 將函數設為全域，讓 sendEmail 可以訪問
+    window.highlightMissingField = function(element) {
+        if (element) {
+            element.style.borderColor = '#dc2626';
+            element.style.backgroundColor = '#fef2f2';
+            element.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)';
+
+            // 平滑滾動到第一個錯誤欄位
+            if (document.querySelector('.missing-field') === null) {
+                element.classList.add('missing-field');
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    };
+
+    // 將函數設為全域，讓 sendEmail 可以訪問
+    window.clearAllFieldHighlights = function() {
+        const highlightedFields = document.querySelectorAll('input[style*="border-color"], select[style*="border-color"]');
+        highlightedFields.forEach(field => {
+            field.style.borderColor = '';
+            field.style.backgroundColor = '';
+            field.style.boxShadow = '';
+            field.classList.remove('missing-field');
+        });
+    };
+
+    // 為所有輸入欄位添加焦點事件，清除高亮
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    allInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            if (this.style.borderColor === 'rgb(220, 38, 38)') {
+                this.style.borderColor = '';
+                this.style.backgroundColor = '';
+                this.style.boxShadow = '';
+                this.classList.remove('missing-field');
+            }
+        });
+    });
+
+    // 也將清除單個欄位的函數設為全域
+    window.clearFieldHighlight = function(element) {
+        if (element) {
+            element.style.borderColor = '';
+            element.style.backgroundColor = '';
+            element.style.boxShadow = '';
+            element.classList.remove('missing-field');
+        }
+    };
 });
 
 // Email 發送功能
@@ -272,7 +344,10 @@ function sendEmail() {
 
         // 檢查必填欄位
         const validation = validateRequiredFields(formData);
+        console.log('驗證結果:', validation);
+
         if (!validation.success) {
+            console.log('驗證失敗:', validation.message);
             showMessage(validation.message, 'error');
             return;
         }
@@ -281,8 +356,16 @@ function sendEmail() {
         const emailContent = formatEmailContent(formData);
         console.log('Email內容已生成');
 
+        // 建立包含收件人名字和日期的主旨
+        const today = new Date();
+        const todayString = today.getFullYear() + '-' +
+                           String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                           String(today.getDate()).padStart(2, '0'); // 格式: YYYY-MM-DD
+        const subscriberName = formData.subscriberName || '未提供姓名';
+        const subject = `數位狂潮雜誌訂閱申請_${subscriberName}_${todayString}`;
+
         // 發送 email - 在新視窗中開啟
-        const mailto = `mailto:Helen_Tseng@asus.com?subject=數位狂潮雜誌訂閱申請&body=${encodeURIComponent(emailContent)}`;
+        const mailto = `mailto:Helen_Tseng@asus.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
         console.log('準備開啟郵件:', mailto.substring(0, 100) + '...');
 
         window.open(mailto, '_blank');
@@ -308,7 +391,11 @@ function collectFormData() {
     // 配送方式
     const delivery = document.querySelector('input[name="delivery"]:checked');
     data.delivery = delivery ? delivery.nextElementSibling.textContent.trim() : '';
-    
+
+    // 起始期數
+    const subscriptionPeriod = document.querySelector('input[name="subscription-period"]:checked');
+    data.subscriptionPeriod = subscriptionPeriod ? subscriptionPeriod.nextElementSibling.textContent.trim() : '';
+
     // 付款方式
     const payment = document.querySelector('input[name="payment"]:checked');
     data.payment = payment ? payment.nextElementSibling.textContent.trim() : '';
@@ -353,13 +440,38 @@ function collectFormData() {
 }
 
 function validateRequiredFields(data) {
+    // 清除之前的錯誤高亮
+    if (window.clearAllFieldHighlights) {
+        window.clearAllFieldHighlights();
+    }
+
     // 檢查基本必填欄位
-    const requiredFields = ['subscribePlan', 'delivery', 'payment', 'subscriberName', 'subscriberEmail', 'subscriberPhone', 'recipientAddress'];
+    const requiredFields = [
+        { key: 'subscribePlan', name: '訂閱方案', element: null },
+        { key: 'delivery', name: '寄送方式', element: null },
+        { key: 'payment', name: '付款方式', element: null },
+        { key: 'subscriberName', name: '收件人姓名', element: document.getElementById('subscriber-name') },
+        { key: 'subscriberEmail', name: 'Email', element: document.getElementById('subscriber-email') },
+        { key: 'subscriberMobile', name: '手機', element: document.getElementById('subscriber-mobile') },
+        { key: 'recipientAddress', name: '收件地址', element: document.getElementById('recipient-address') }
+    ];
+
+    const missingFields = [];
 
     for (const field of requiredFields) {
-        if (!data[field] || data[field].trim() === '') {
-            return { success: false, message: '請填寫完整的必要資訊後再發送' };
+        if (!data[field.key] || data[field.key].trim() === '') {
+            missingFields.push(field.name);
+            if (field.element && window.highlightMissingField) {
+                window.highlightMissingField(field.element);
+            }
         }
+    }
+
+    if (missingFields.length > 0) {
+        return {
+            success: false,
+            message: `請填寫以下必要資訊：${missingFields.join('、')}`
+        };
     }
 
     // 個別欄位格式驗證
@@ -370,36 +482,79 @@ function validateRequiredFields(data) {
 
     // Email格式驗證
     if (emailInput && emailInput.value && !validateEmailFormat(emailInput.value)) {
+        if (window.highlightMissingField) window.highlightMissingField(emailInput);
         showFieldError(emailInput, 'Email格式不正確');
         return { success: false, message: 'Email格式不正確，請重新輸入' };
     }
 
     // 聯絡電話格式驗證
     if (phoneInput && phoneInput.value && !validatePhoneFormat(phoneInput.value)) {
+        if (window.highlightMissingField) window.highlightMissingField(phoneInput);
         showFieldError(phoneInput, '請輸入數字');
         return { success: false, message: '聯絡電話格式不正確，請輸入數字' };
     }
 
     // 手機格式驗證
     if (mobileInput && mobileInput.value && !validateMobileFormat(mobileInput.value)) {
+        if (window.highlightMissingField) window.highlightMissingField(mobileInput);
         showFieldError(mobileInput, '手機號碼格式不正確');
         return { success: false, message: '手機號碼格式不正確，請輸入10碼數字' };
     }
 
     // 發票資訊聯絡電話格式驗證
     if (companyPhoneInput && companyPhoneInput.value && !validatePhoneFormat(companyPhoneInput.value)) {
+        if (window.highlightMissingField) window.highlightMissingField(companyPhoneInput);
         showFieldError(companyPhoneInput, '請輸入數字');
         return { success: false, message: '發票資訊中的聯絡電話格式不正確，請輸入數字' };
     }
 
+    // 檢查隱私權同意checkbox
+    const privacyAgreement = document.getElementById('privacy-agreement');
+    if (!privacyAgreement || !privacyAgreement.checked) {
+        return { success: false, message: '請勾選同意隱私權聲明才能發送申請' };
+    }
+
     // 根據付款方式檢查相關欄位
     if (data.paymentValue === 'bank') {
-        if (!data.orderDate || !data.remittanceAccount || !data.remittanceDate) {
-            return { success: false, message: '請填寫完整的匯款資料（訂購日期、匯款帳戶後五碼、匯款日期）' };
+        const bankFields = [
+            { data: data.orderDate, element: document.getElementById('order-date'), name: '訂購日期' },
+            { data: data.remittanceAccount, element: document.getElementById('remittance-account'), name: '匯款帳戶後五碼' },
+            { data: data.remittanceDate, element: document.getElementById('remittance-date'), name: '匯款日期' }
+        ];
+
+        const missingBankFields = [];
+        for (const field of bankFields) {
+            if (!field.data || field.data.trim() === '') {
+                missingBankFields.push(field.name);
+                if (field.element && window.highlightMissingField) {
+                    window.highlightMissingField(field.element);
+                }
+            }
+        }
+
+        if (missingBankFields.length > 0) {
+            return { success: false, message: `請填寫完整的匯款資料：${missingBankFields.join('、')}` };
         }
     } else if (data.paymentValue === 'credit') {
-        if (!data.cardNumber || !data.cardholderName || !data.cardMonth || !data.cardYear) {
-            return { success: false, message: '請填寫完整的信用卡資料（卡號、持卡人姓名、有效期限）' };
+        const creditFields = [
+            { data: data.cardNumber, element: document.getElementById('card-number'), name: '信用卡卡號' },
+            { data: data.cardholderName, element: document.getElementById('cardholder-name'), name: '持卡人姓名' },
+            { data: data.cardMonth, element: document.querySelector('select[name="card-month"]'), name: '有效期限月份' },
+            { data: data.cardYear, element: document.querySelector('select[name="card-year"]'), name: '有效期限年份' }
+        ];
+
+        const missingCreditFields = [];
+        for (const field of creditFields) {
+            if (!field.data || field.data.trim() === '') {
+                missingCreditFields.push(field.name);
+                if (field.element && window.highlightMissingField) {
+                    window.highlightMissingField(field.element);
+                }
+            }
+        }
+
+        if (missingCreditFields.length > 0) {
+            return { success: false, message: `請填寫完整的信用卡資料：${missingCreditFields.join('、')}` };
         }
     }
 
@@ -430,6 +585,7 @@ function formatEmailContent(data) {
     content += `【訂閱資訊】\n`;
     content += `訂閱方案：${data.subscribePlan}\n`;
     content += `配送方式：${data.delivery}\n`;
+    content += `起始期數：${data.subscriptionPeriod}\n`;
     content += `付款方式：${data.payment}\n`;
     content += `總金額：${data.totalAmount}\n\n`;
     

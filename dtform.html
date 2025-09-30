@@ -85,22 +85,17 @@
             </div>
           </div>
 
-          <h2 class="dtform-section-title">起始訂閱年月</h2>
+          <h2 class="dtform-section-title">起始期數</h2>
           <div class="dtform-group">
-            <div class="subscription-period">
-              <span>自</span>
-              <select name="start-year">
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-              </select>
-              <span>年</span>
-              <select name="start-month">
-                <option value="1">1</option>
-                <option value="4">4</option>
-                <option value="7">7</option>
-                <option value="10">10</option>
-              </select>
-              <span>月 開始訂閱</span>
+            <div class="dtform-radio-group">
+              <div class="dtform-radio-option">
+                <input type="radio" id="subscription-current" name="subscription-period" value="current" checked>
+                <label for="subscription-current">從本期開始</label>
+              </div>
+              <div class="dtform-radio-option">
+                <input type="radio" id="subscription-next" name="subscription-period" value="next">
+                <label for="subscription-next">從下期開始</label>
+              </div>
             </div>
           </div>
           <div class="total-amount">
@@ -305,25 +300,34 @@
       </div>
 
       <div class="print-section">
-        <div class="print-instruction">
-          <p>填寫完整資料後請點下方按鈕 E-mail 至 Helen_Tseng@asus.com</p>
-          <p>若您使用匯款方式，請附加匯款收據圖檔一起寄出。</p>
+        <div id="message-display" class="message-display"></div>
+        <div class="disclaimer-info">
+          <h4>隱私權與資料使用</h4>
+          <div class="disclaimer-details">
+            <div class="disclaimer-item">
+              因訂購雜誌之需要，本公司向您蒐集本訂閱單所需個人資訊，資訊僅作為公司營運期間辨識訂閱戶資料、寄送出版物之用。您可隨時向本公司請求查閱、更正或補充個人資訊、提供複本及請求刪除或停止使用。如資料填寫不完整時，可能影響您收受刊物之權利。若收件人非訂購人時，請務必向收件人告知確認此聲明。
+            </div>
+          </div>
         </div>
-        <button type="button" class="print-btn" onclick="sendEmail()" id="send-email-btn">
+
+        <div class="agreement-section">
+          <div class="agreement-checkbox">
+            <input type="checkbox" id="privacy-agreement" name="privacy-agreement">
+            <label for="privacy-agreement">我已閱讀並同意上述聲明</label>
+          </div>
+        </div>
+
+        <button type="button" class="print-btn" onclick="sendEmail()" id="send-email-btn" disabled>
           <i class="fas fa-envelope"></i>
           發送 E-mail
         </button>
-        <div id="message-display" class="message-display"></div>
+        <div class="print-instruction">
+          <!-- <p>填寫完整資料後請點下方按鈕 E-mail 至 Helen_Tseng@asus.com</p> -->
+          <p>若您使用匯款方式，請連同匯款收據照片或截圖附加檔案寄出。</p>
+        </div>
+
       </div>
 
-      <div class="disclaimer-info">
-        <h4>隱私權與資料使用</h4>
-        <div class="disclaimer-details">
-          <div class="disclaimer-item">
-            我已詳細閱讀並同意以下聲明：因訂購雜誌之需要，本公司向您蒐集本訂閱單所需個人資訊，資訊僅作為公司營運期間辨識訂閱戶資料、寄送出版物之用。您可隨時向本公司請求查閱、更正或補充個人資訊、提供複本及請求刪除或停止使用。如資料填寫不完整時，可能影響您收受刊物之權利。若收件人非訂購人時，請務必向收件人告知確認此聲明。
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>

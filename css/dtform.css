@@ -431,6 +431,60 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 /*========================================================================================================*/
+/*== Agreement Section Style                                                                           ===*/
+/*========================================================================================================*/
+
+.agreement-section {
+    margin: 20px 0;
+}
+
+.agreement-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.agreement-checkbox:hover {
+    background: #e9ecef;
+    border-color: #667eea;
+}
+
+.agreement-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #667eea;
+    flex-shrink: 0;
+    margin-top: 2px;
+    z-index: 2;
+    position: relative;
+}
+
+.agreement-checkbox label {
+    cursor: pointer;
+    user-select: none;
+    color: #555;
+    line-height: 1.6;
+    flex: 1;
+    margin: 0;
+    font-weight: 500;
+    z-index: 1;
+    position: relative;
+}
+
+.agreement-checkbox.checked {
+    background: #e8eaf6;
+    border-color: #667eea;
+}
+
+/*========================================================================================================*/
 /*== Send Email Style                                                                                  ===*/
 /*========================================================================================================*/
 
@@ -458,6 +512,19 @@ input[type="date"]::-webkit-datetime-edit-text {
 .print-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.print-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+.print-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .print-instruction {
