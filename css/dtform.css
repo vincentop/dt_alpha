@@ -226,7 +226,7 @@ input[type="date"]::-webkit-datetime-edit-text {
 
 .dtform-radio-option input[type="radio"]:checked+label {
     color: #667eea;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .dtform-radio-option:has(input[type="radio"]:checked) {
@@ -247,8 +247,9 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 .dt-notice h4 {
-    color: #92400e;
+    color: #ff6100;
     margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .dt-notice p {
@@ -382,11 +383,23 @@ input[type="date"]::-webkit-datetime-edit-text {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.expiry-date input {
+    width: 160px;
+    text-align: center;
 }
 
 .expiry-date select {
     /* width: auto; */
     min-width: 100px;
+}
+
+/* 確保 field-error 在 expiry-date 容器內時會換行顯示 */
+.expiry-date .field-error {
+    flex-basis: 100%;
+    order: 999;
 }
 
 /*========================================================================================================*/
@@ -534,39 +547,85 @@ input[type="date"]::-webkit-datetime-edit-text {
 }
 
 .message-display {
-    margin-top: 20px;
-    padding: 5px;
-    border-radius: 8px;
-    font-weight: 700;
-    text-align: center;
-    transition: all 0.3s ease;
-    min-height: 0;
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 50% !important;
+    transform: translateX(50%) translateY(150px);
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999 !important;
     opacity: 0;
-    transform: translateY(-10px);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .message-display.show {
     opacity: 1;
-    transform: translateY(0);
-    min-height: auto;
+    transform: translateX(50%) translateY(0);
+    pointer-events: auto;
+}
+
+.message-display::before {
+    content: '';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 20px;
+    flex-shrink: 0;
 }
 
 .message-display.success {
-    background-color: #d1fae5;
-    border: 1px solid #10b981;
-    color: #065f46;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    color: #ffffff;
+}
+
+.message-display.success::before {
+    content: '\f058'; /* fa-check-circle */
 }
 
 .message-display.error {
-    background-color: #fef2f2;
-    border: 1px solid #ef4444;
-    color: #ca1f1f;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border: none;
+    color: #ffffff;
+}
+
+.message-display.error::before {
+    content: '\f06a'; /* fa-exclamation-circle */
 }
 
 .message-display.info {
-    background-color: #dbeafe;
-    border: 1px solid #3b82f6;
-    color: #1e40af;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: none;
+    color: #ffffff;
+}
+
+.message-display.info::before {
+    content: '\f05a'; /* fa-info-circle */
+}
+
+/* 手機版響應式設計 */
+@media (max-width: 768px) {
+    .message-display {
+        bottom: 20px !important;
+        right: 10px !important;
+        left: 10px !important;
+        min-width: auto;
+        max-width: none;
+        transform: translateX(0) translateY(150px);
+    }
+
+    .message-display.show {
+        transform: translateX(0) translateY(0);
+    }
 }
 
 /*========================================================================================================*/
@@ -578,7 +637,7 @@ input[type="date"]::-webkit-datetime-edit-text {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .total-amount h3 {

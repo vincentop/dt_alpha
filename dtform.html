@@ -71,18 +71,10 @@
               </div>
             </div>
           </div>
-          <h2 class="dtform-section-title">寄送方式</h2>
-          <div class="dtform-group">
-            <div class="dtform-radio-group">
-              <div class="dtform-radio-option">
-                <input type="radio" id="delivery1" name="delivery" value="regular" checked>
-                <label for="delivery1">限時專送</label>
-              </div>
-              <div class="dtform-radio-option">
-                <input type="radio" id="delivery2" name="delivery" value="registered">
-                <label for="delivery2">掛號<span id="postage-text"></span></label>
-              </div>
-            </div>
+
+          <div class="dt-notice">
+            <h4>注意事項</h4>
+            <p>數位狂潮雜誌訂閱一年共四期，1、4、7、10月出刊，採限時專送。<br>如需掛號需加付郵資（一年四期100元、兩年八期200元）。</p>
           </div>
 
           <h2 class="dtform-section-title">起始期數</h2>
@@ -98,14 +90,26 @@
               </div>
             </div>
           </div>
+
+          <h2 class="dtform-section-title">寄送方式</h2>
+          <div class="dtform-group">
+            <div class="dtform-radio-group">
+              <div class="dtform-radio-option">
+                <input type="radio" id="delivery1" name="delivery" value="regular" checked>
+                <label for="delivery1">限時專送</label>
+              </div>
+              <div class="dtform-radio-option">
+                <input type="radio" id="delivery2" name="delivery" value="registered">
+                <label for="delivery2">掛號<span id="postage-text"></span></label>
+              </div>
+            </div>
+          </div>
+
           <div class="total-amount">
             <h3>總金額</h3>
             <p id="total-price">NT$0</p>
           </div>
-          <div class="dt-notice">
-            <h4>注意事項</h4>
-            <p>數位狂潮雜誌訂閱一年共四期，1、4、7、10月出刊，採限時專送。如需掛號需加付郵資（一年四期100元、兩年八期200元）。</p>
-          </div>
+          
         </div>
 
         <!-- 付款方式 -->
@@ -132,14 +136,11 @@
             <p><strong>分行：</strong>012 台北富邦銀行北投分行</p>
             <p><strong>戶名：</strong>華碩聯合科技股份有限公司</p>
             <p><strong>帳號：</strong>360102062996</p>
+            <p style="color: rgb(219, 34, 34);">轉帳時請於備註欄填寫匯款人姓名及帳號後5碼以利帳務查詢, 謝謝</p>
           </div>
           <h2 class="dtform-section-title">匯款資料</h2>
 
           <div class="dtform-row">
-            <div class="dtform-col">
-              <label for="order-date">訂購日期</label>
-              <input type="date" id="order-date" name="order-date">
-            </div>
             <div class="dtform-col">
               <label for="remittance-account">匯款帳戶</label>
               <input type="text" id="remittance-account" name="remittance-account" placeholder="請輸入帳戶後五碼" pattern="\d{5}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
@@ -170,7 +171,7 @@
             </div>
             <div class="dtform-col">
               <label for="cardholder-name">持卡人姓名</label>
-              <input type="text" id="cardholder-name" name="cardholder-name" placeholder="同信用卡">
+              <input type="text" id="cardholder-name" name="cardholder-name" placeholder="同信用卡英文姓名">
             </div>
           </div>
 
@@ -178,36 +179,9 @@
             <div class="dtform-col">
               <label>有效期限</label>
               <div class="expiry-date">
-                <select name="card-month">
-                  <option value="" disabled selected>月份</option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </select>
+                <input type="text" id="card-month" name="card-month" placeholder="MM" maxlength="2">
                 <span>/</span>
-                <select name="card-year">
-                  <option value="" disabled selected>年份</option>
-                  <option value="2025">2025</option>
-                  <option value="2026">2026</option>
-                  <option value="2027">2027</option>
-                  <option value="2028">2028</option>
-                  <option value="2029">2029</option>
-                  <option value="2030">2030</option>
-                  <option value="2031">2031</option>
-                  <option value="2032">2032</option>
-                  <option value="2033">2033</option>
-                  <option value="2034">2034</option>
-                  <option value="2035">2035</option>
-                </select>
+                <input type="text" id="card-year" name="card-year" placeholder="YY" maxlength="2">
               </div>
             </div>
             <div class="dtform-col">
@@ -217,40 +191,6 @@
           </div>
         </div>
 
-        <!-- 發票資訊 -->
-        <div class="dtform-section">
-          <h2 class="dtform-section-title">發票資訊</h2>
-          <div class="dtform-row">
-            <div class="dtform-col">
-              <label for="tax-id">統一編號</label>
-              <input type="text" id="tax-id" name="tax-id" placeholder="如需統編請填寫">
-            </div>
-            <div class="dtform-col">
-              <label for="invoice-title">發票抬頭</label>
-              <input type="text" id="invoice-title" name="invoice-title">
-            </div>
-          </div>
-          <div class="dtform-row">
-            <div class="dtform-col">
-              <label for="company-contact">公司聯絡人</label>
-              <input type="text" id="company-contact" name="company-contact">
-            </div>
-            <div class="dtform-col">
-              <label for="company-owner">公司負責人</label>
-              <input type="text" id="company-owner" name="company-owner">
-            </div>
-          </div>
-          <div class="dtform-row">
-            <div class="dtform-col">
-              <label for="company-address">公司營利地址</label>
-              <input type="text" id="company-address" name="company-address">
-            </div>
-            <div class="dtform-col">
-              <label for="company-phone">聯絡電話</label>
-              <input type="tel" id="company-phone" name="company-phone">
-            </div>
-          </div>
-        </div>
 
         <!-- 收件人資料 -->
         <div class="dtform-section">
@@ -274,7 +214,7 @@
               <input type="text" id="subscriber-name" name="subscriber-name">
             </div>
             <div class="dtform-col">
-              <label for="subscriber-email">E-Mail</label>
+              <label for="subscriber-email">Email</label>
               <input type="email" id="subscriber-email" name="subscriber-email">
             </div>
           </div>
@@ -299,8 +239,42 @@
         </div>
       </div>
 
+      <!-- 發票資訊 -->
+      <div class="dtform-section" id="invoice-section" style="display: none;">
+        <h2 class="dtform-section-title">發票資訊</h2>
+        <div class="dtform-row">
+          <div class="dtform-col">
+            <label for="tax-id">統一編號</label>
+            <input type="text" id="tax-id" name="tax-id" placeholder="如需統編請填寫">
+          </div>
+          <div class="dtform-col">
+            <label for="invoice-title">發票抬頭</label>
+            <input type="text" id="invoice-title" name="invoice-title">
+          </div>
+        </div>
+        <div class="dtform-row">
+          <div class="dtform-col">
+            <label for="company-contact">公司聯絡人</label>
+            <input type="text" id="company-contact" name="company-contact">
+          </div>
+          <div class="dtform-col">
+            <label for="company-owner">公司負責人</label>
+            <input type="text" id="company-owner" name="company-owner">
+          </div>
+        </div>
+        <div class="dtform-row">
+          <div class="dtform-col">
+            <label for="company-address">公司營利地址</label>
+            <input type="text" id="company-address" name="company-address">
+          </div>
+          <div class="dtform-col">
+            <label for="company-phone">聯絡電話</label>
+            <input type="tel" id="company-phone" name="company-phone">
+          </div>
+        </div>
+      </div>
+
       <div class="print-section">
-        <div id="message-display" class="message-display"></div>
         <div class="disclaimer-info">
           <h4>隱私權與資料使用</h4>
           <div class="disclaimer-details">
@@ -319,13 +293,13 @@
 
         <button type="button" class="print-btn" onclick="sendEmail()" id="send-email-btn" disabled>
           <i class="fas fa-envelope"></i>
-          發送 E-mail
+          發送 Email
         </button>
         <div class="print-instruction">
           <!-- <p>填寫完整資料後請點下方按鈕 E-mail 至 Helen_Tseng@asus.com</p> -->
-          <p>若您使用匯款方式，請連同匯款收據照片或截圖附加檔案寄出。</p>
+          <p style="color: rgb(219, 34, 34); padding-top: 20px;">若您使用匯款方式，請連同匯款收據照片或截圖附加檔案寄出。</p>
         </div>
-
+        <div id="message-display" class="message-display"></div>
       </div>
 
 

@@ -87,6 +87,24 @@ document.addEventListener('DOMContentLoaded', function () {
     calculateTotal();
     togglePaymentSections();
 
+    // 訂閱類型切換發票資訊顯示
+    const subscriptionTypeRadios = document.querySelectorAll('input[name="subscription-type"]');
+    const invoiceSection = document.getElementById('invoice-section');
+
+    function toggleInvoiceSection() {
+        const selectedType = document.querySelector('input[name="subscription-type"]:checked');
+        if (selectedType && invoiceSection) {
+            if (selectedType.value === 'company') {
+                invoiceSection.style.display = 'block';
+            } else {
+                invoiceSection.style.display = 'none';
+            }
+        }
+    }
+
+    subscriptionTypeRadios.forEach(radio => radio.addEventListener('change', toggleInvoiceSection));
+    toggleInvoiceSection(); // 初始化
+
     // 隱私權同意checkbox控制按鈕啟用狀態
     const privacyAgreement = document.getElementById('privacy-agreement');
     const sendEmailBtn = document.getElementById('send-email-btn');
@@ -172,16 +190,101 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (email && !emailPattern.test(email)) {
-            showFieldError(emailInput, 'Email格式不正確');
+            window.showFieldError(emailInput, 'Email格式不正確');
             return false;
         } else {
-            clearFieldError(emailInput);
+            window.clearFieldError(emailInput);
             return true;
         }
     }
 
     function clearEmailError() {
-        clearFieldError(emailInput);
+        window.clearFieldError(emailInput);
+    }
+
+    // 持卡人姓名驗證（只允許英文字母和空格，自動轉大寫）
+    const cardholderNameInput = document.getElementById('cardholder-name');
+    if (cardholderNameInput) {
+        cardholderNameInput.addEventListener('input', function(e) {
+            // 只保留英文字母和空格，並轉為大寫
+            e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '').toUpperCase();
+        });
+
+        cardholderNameInput.addEventListener('blur', function(e) {
+            const name = e.target.value.trim();
+            if (name && /[^a-zA-Z\s]/.test(name)) {
+                window.showFieldError(e.target, '持卡人姓名只能包含英文字母');
+                return false;
+            } else {
+                window.clearFieldError(e.target);
+                return true;
+            }
+        });
+    }
+
+    // 信用卡有效期限驗證（月份和年份）
+    const cardMonthInput = document.getElementById('card-month');
+    const cardYearInput = document.getElementById('card-year');
+
+    if (cardMonthInput) {
+        cardMonthInput.addEventListener('input', function(e) {
+            // 只保留數字
+            let value = e.target.value.replace(/\D/g, '');
+            // 限制最多2碼
+            value = value.slice(0, 2);
+            e.target.value = value;
+        });
+
+        cardMonthInput.addEventListener('blur', function(e) {
+            let value = e.target.value;
+            if (value) {
+                const month = parseInt(value, 10);
+                if (month < 1 || month > 12) {
+                    window.showFieldError(e.target, '月份必須為 01~12');
+                    return false;
+                } else {
+                    // 自動補0 (例如 1 變成 01)
+                    e.target.value = value.padStart(2, '0');
+                    window.clearFieldError(e.target);
+                    return true;
+                }
+            } else {
+                window.clearFieldError(e.target);
+            }
+        });
+    }
+
+    if (cardYearInput) {
+        cardYearInput.addEventListener('input', function(e) {
+            // 只保留數字
+            let value = e.target.value.replace(/\D/g, '');
+            // 限制最多2碼
+            value = value.slice(0, 2);
+            e.target.value = value;
+        });
+
+        cardYearInput.addEventListener('blur', function(e) {
+            let value = e.target.value;
+            if (value) {
+                if (value.length !== 2) {
+                    window.showFieldError(e.target, '年份必須為2碼數字');
+                    return false;
+                }
+
+                // 檢查年份不能小於今年
+                const currentYear = new Date().getFullYear() % 100; // 取得今年的後兩碼
+                const inputYear = parseInt(value, 10);
+                if (inputYear < currentYear) {
+                    window.showFieldError(e.target, `年份不能小於今年 (${currentYear})`);
+                    return false;
+                }
+
+                window.clearFieldError(e.target);
+                return true;
+            } else {
+                window.clearFieldError(e.target);
+            }
+        });
     }
 
     // 聯絡電話驗證（區碼+數字）
@@ -207,10 +310,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 只檢查是否包含非數字字符
         if (phone && /\D/.test(phone)) {
-            showFieldError(e.target, '請輸入數字');
+            window.showFieldError(e.target, '請輸入數字');
             return false;
         } else {
-            clearFieldError(e.target);
+            window.clearFieldError(e.target);
             return true;
         }
     }
@@ -240,19 +343,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const mobile = e.target.value.replace(/\D/g, ''); // 移除非數字字符進行驗證
 
         if (mobile && mobile.length !== 10) {
-            showFieldError(e.target, '手機號碼必須為10碼數字');
+            window.showFieldError(e.target, '手機號碼必須為10碼數字');
             return false;
         } else if (mobile && !mobile.startsWith('09')) {
-            showFieldError(e.target, '手機號碼必須以09開頭');
+            window.showFieldError(e.target, '手機號碼必須以09開頭');
             return false;
         } else {
-            clearFieldError(e.target);
+            window.clearFieldError(e.target);
             return true;
         }
     }
 
-    // 通用錯誤顯示函數
-    function showFieldError(input, message) {
+    // 通用錯誤顯示函數 - 設為全域
+    window.showFieldError = function(input, message) {
         input.style.borderColor = '#e74c3c';
         input.style.backgroundColor = '#fdf2f2';
 
@@ -271,9 +374,9 @@ document.addEventListener('DOMContentLoaded', function () {
         errorDiv.style.marginTop = '4px';
 
         input.parentNode.appendChild(errorDiv);
-    }
+    };
 
-    function clearFieldError(input) {
+    window.clearFieldError = function(input) {
         input.style.borderColor = '';
         input.style.backgroundColor = '';
 
@@ -281,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (existingError) {
             existingError.remove();
         }
-    }
+    };
 
     // 將函數設為全域，讓 sendEmail 可以訪問
     window.highlightMissingField = function(element) {
@@ -289,12 +392,10 @@ document.addEventListener('DOMContentLoaded', function () {
             element.style.borderColor = '#dc2626';
             element.style.backgroundColor = '#fef2f2';
             element.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.1)';
+            element.classList.add('missing-field');
 
-            // 平滑滾動到第一個錯誤欄位
-            if (document.querySelector('.missing-field') === null) {
-                element.classList.add('missing-field');
-                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            // 移除自動滾動功能，讓使用者可以看到底部的 toast 通知
+            // element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     };
 
@@ -377,7 +478,8 @@ function sendEmail() {
 
     } catch (error) {
         console.error('發送郵件時發生錯誤:', error);
-        showMessage('發送郵件時發生錯誤，請檢查控制台', 'error');
+        console.error('錯誤堆疊:', error.stack);
+        showMessage(`發送郵件時發生錯誤: ${error.message}`, 'error');
     }
 }
 
@@ -402,39 +504,56 @@ function collectFormData() {
     data.paymentValue = payment ? payment.value : '';
     
     // 總金額
-    data.totalAmount = document.getElementById('total-price').textContent;
-    
+    const totalPriceEl = document.getElementById('total-price');
+    data.totalAmount = totalPriceEl ? totalPriceEl.textContent : '';
+
     // 匯款資料
-    data.orderDate = document.getElementById('order-date').value;
-    data.remittanceAccount = document.getElementById('remittance-account').value;
-    data.remittanceDate = document.getElementById('remittance-date').value;
-    data.remittanceAmount = document.getElementById('remittance-amount').value;
-    
+    const remittanceAccountEl = document.getElementById('remittance-account');
+    const remittanceDateEl = document.getElementById('remittance-date');
+    const remittanceAmountEl = document.getElementById('remittance-amount');
+    data.remittanceAccount = remittanceAccountEl ? remittanceAccountEl.value : '';
+    data.remittanceDate = remittanceDateEl ? remittanceDateEl.value : '';
+    data.remittanceAmount = remittanceAmountEl ? remittanceAmountEl.value : '';
+
     // 信用卡資料
-    data.cardNumber = document.getElementById('card-number').value;
-    data.cardholderName = document.getElementById('cardholder-name').value;
-    const cardMonth = document.querySelector('select[name="card-month"]');
-    const cardYear = document.querySelector('select[name="card-year"]');
-    data.cardMonth = cardMonth ? cardMonth.value : '';
-    data.cardYear = cardYear ? cardYear.value : '';
-    data.orderAmount = document.getElementById('order-amount').value;
-    
+    const cardNumberEl = document.getElementById('card-number');
+    const cardholderNameEl = document.getElementById('cardholder-name');
+    const cardMonthEl = document.getElementById('card-month');
+    const cardYearEl = document.getElementById('card-year');
+    const orderAmountEl = document.getElementById('order-amount');
+    data.cardNumber = cardNumberEl ? cardNumberEl.value : '';
+    data.cardholderName = cardholderNameEl ? cardholderNameEl.value : '';
+    data.cardMonth = cardMonthEl ? cardMonthEl.value : '';
+    data.cardYear = cardYearEl ? cardYearEl.value : '';
+    data.orderAmount = orderAmountEl ? orderAmountEl.value : '';
+
     // 發票資訊
-    data.taxId = document.getElementById('tax-id').value;
-    data.invoiceTitle = document.getElementById('invoice-title').value;
-    data.companyContact = document.getElementById('company-contact').value;
-    data.companyOwner = document.getElementById('company-owner').value;
-    data.companyAddress = document.getElementById('company-address').value;
-    data.companyPhone = document.getElementById('company-phone').value;
-    
+    const taxIdEl = document.getElementById('tax-id');
+    const invoiceTitleEl = document.getElementById('invoice-title');
+    const companyContactEl = document.getElementById('company-contact');
+    const companyOwnerEl = document.getElementById('company-owner');
+    const companyAddressEl = document.getElementById('company-address');
+    const companyPhoneEl = document.getElementById('company-phone');
+    data.taxId = taxIdEl ? taxIdEl.value : '';
+    data.invoiceTitle = invoiceTitleEl ? invoiceTitleEl.value : '';
+    data.companyContact = companyContactEl ? companyContactEl.value : '';
+    data.companyOwner = companyOwnerEl ? companyOwnerEl.value : '';
+    data.companyAddress = companyAddressEl ? companyAddressEl.value : '';
+    data.companyPhone = companyPhoneEl ? companyPhoneEl.value : '';
+
     // 收件人資料
     const subscriptionType = document.querySelector('input[name="subscription-type"]:checked');
     data.subscriptionType = subscriptionType ? subscriptionType.nextElementSibling.textContent.trim() : '';
-    data.subscriberName = document.getElementById('subscriber-name').value;
-    data.subscriberEmail = document.getElementById('subscriber-email').value;
-    data.subscriberPhone = document.getElementById('subscriber-phone').value;
-    data.subscriberMobile = document.getElementById('subscriber-mobile').value;
-    data.recipientAddress = document.getElementById('recipient-address').value;
+    const subscriberNameEl = document.getElementById('subscriber-name');
+    const subscriberEmailEl = document.getElementById('subscriber-email');
+    const subscriberPhoneEl = document.getElementById('subscriber-phone');
+    const subscriberMobileEl = document.getElementById('subscriber-mobile');
+    const recipientAddressEl = document.getElementById('recipient-address');
+    data.subscriberName = subscriberNameEl ? subscriberNameEl.value : '';
+    data.subscriberEmail = subscriberEmailEl ? subscriberEmailEl.value : '';
+    data.subscriberPhone = subscriberPhoneEl ? subscriberPhoneEl.value : '';
+    data.subscriberMobile = subscriberMobileEl ? subscriberMobileEl.value : '';
+    data.recipientAddress = recipientAddressEl ? recipientAddressEl.value : '';
     
     return data;
 }
@@ -470,7 +589,7 @@ function validateRequiredFields(data) {
     if (missingFields.length > 0) {
         return {
             success: false,
-            message: `請填寫以下必要資訊：${missingFields.join('、')}`
+            message: `請填寫必要資訊：${missingFields.join('、')}`
         };
     }
 
@@ -483,28 +602,28 @@ function validateRequiredFields(data) {
     // Email格式驗證
     if (emailInput && emailInput.value && !validateEmailFormat(emailInput.value)) {
         if (window.highlightMissingField) window.highlightMissingField(emailInput);
-        showFieldError(emailInput, 'Email格式不正確');
+        if (window.showFieldError) window.showFieldError(emailInput, 'Email格式不正確');
         return { success: false, message: 'Email格式不正確，請重新輸入' };
     }
 
     // 聯絡電話格式驗證
     if (phoneInput && phoneInput.value && !validatePhoneFormat(phoneInput.value)) {
         if (window.highlightMissingField) window.highlightMissingField(phoneInput);
-        showFieldError(phoneInput, '請輸入數字');
+        if (window.showFieldError) window.showFieldError(phoneInput, '請輸入數字');
         return { success: false, message: '聯絡電話格式不正確，請輸入數字' };
     }
 
     // 手機格式驗證
     if (mobileInput && mobileInput.value && !validateMobileFormat(mobileInput.value)) {
         if (window.highlightMissingField) window.highlightMissingField(mobileInput);
-        showFieldError(mobileInput, '手機號碼格式不正確');
-        return { success: false, message: '手機號碼格式不正確，請輸入10碼數字' };
+        if (window.showFieldError) window.showFieldError(mobileInput, '手機號碼格式不正確');
+        return { success: false, message: '手機號碼格式不正確' };
     }
 
     // 發票資訊聯絡電話格式驗證
     if (companyPhoneInput && companyPhoneInput.value && !validatePhoneFormat(companyPhoneInput.value)) {
         if (window.highlightMissingField) window.highlightMissingField(companyPhoneInput);
-        showFieldError(companyPhoneInput, '請輸入數字');
+        if (window.showFieldError) window.showFieldError(companyPhoneInput, '請輸入數字');
         return { success: false, message: '發票資訊中的聯絡電話格式不正確，請輸入數字' };
     }
 
@@ -517,7 +636,6 @@ function validateRequiredFields(data) {
     // 根據付款方式檢查相關欄位
     if (data.paymentValue === 'bank') {
         const bankFields = [
-            { data: data.orderDate, element: document.getElementById('order-date'), name: '訂購日期' },
             { data: data.remittanceAccount, element: document.getElementById('remittance-account'), name: '匯款帳戶後五碼' },
             { data: data.remittanceDate, element: document.getElementById('remittance-date'), name: '匯款日期' }
         ];
@@ -535,12 +653,19 @@ function validateRequiredFields(data) {
         if (missingBankFields.length > 0) {
             return { success: false, message: `請填寫完整的匯款資料：${missingBankFields.join('、')}` };
         }
+
+        // 檢查匯款帳戶後五碼格式
+        const remittanceAccountInput = document.getElementById('remittance-account');
+        if (data.remittanceAccount && data.remittanceAccount.length !== 5) {
+            if (window.highlightMissingField) window.highlightMissingField(remittanceAccountInput);
+            return { success: false, message: '匯款帳戶後五碼必須為5位數字' };
+        }
     } else if (data.paymentValue === 'credit') {
         const creditFields = [
             { data: data.cardNumber, element: document.getElementById('card-number'), name: '信用卡卡號' },
             { data: data.cardholderName, element: document.getElementById('cardholder-name'), name: '持卡人姓名' },
-            { data: data.cardMonth, element: document.querySelector('select[name="card-month"]'), name: '有效期限月份' },
-            { data: data.cardYear, element: document.querySelector('select[name="card-year"]'), name: '有效期限年份' }
+            { data: data.cardMonth, element: document.getElementById('card-month'), name: '有效期限月份' },
+            { data: data.cardYear, element: document.getElementById('card-year'), name: '有效期限年份' }
         ];
 
         const missingCreditFields = [];
@@ -555,6 +680,37 @@ function validateRequiredFields(data) {
 
         if (missingCreditFields.length > 0) {
             return { success: false, message: `請填寫完整的信用卡資料：${missingCreditFields.join('、')}` };
+        }
+
+        // 檢查信用卡號格式（移除連字號後應為16碼）
+        const cardNumberInput = document.getElementById('card-number');
+        const cardNumberClean = data.cardNumber.replace(/\D/g, '');
+        if (cardNumberClean.length !== 16) {
+            if (window.highlightMissingField) window.highlightMissingField(cardNumberInput);
+            return { success: false, message: '信用卡卡號必須為16位數字' };
+        }
+
+        // 檢查月份格式（01-12）
+        const cardMonthInput = document.getElementById('card-month');
+        const month = parseInt(data.cardMonth, 10);
+        if (isNaN(month) || month < 1 || month > 12) {
+            if (window.highlightMissingField) window.highlightMissingField(cardMonthInput);
+            return { success: false, message: '有效期限月份必須為 01~12' };
+        }
+
+        // 檢查年份格式（2碼數字）
+        const cardYearInput = document.getElementById('card-year');
+        if (data.cardYear.length !== 2 || isNaN(data.cardYear)) {
+            if (window.highlightMissingField) window.highlightMissingField(cardYearInput);
+            return { success: false, message: '有效期限年份必須為2碼數字' };
+        }
+
+        // 檢查年份不能小於今年
+        const currentYear = new Date().getFullYear() % 100; // 取得今年的後兩碼
+        const inputYear = parseInt(data.cardYear, 10);
+        if (inputYear < currentYear) {
+            if (window.highlightMissingField) window.highlightMissingField(cardYearInput);
+            return { success: false, message: `有效期限年份不能小於今年 (${currentYear})` };
         }
     }
 
@@ -592,7 +748,6 @@ function formatEmailContent(data) {
     // 付款資料
     if (data.paymentValue === 'bank') {
         content += `【匯款資料】\n`;
-        content += `訂購日期：${data.orderDate}\n`;
         content += `匯款帳戶後五碼：${data.remittanceAccount}\n`;
         content += `匯款日期：${data.remittanceDate}\n`;
         content += `匯款金額：${data.remittanceAmount}\n\n`;
